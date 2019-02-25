@@ -1,0 +1,18 @@
+@ECHO ON
+SET VLC=C:\Program Files\VideoLAN\VLC\vlc.exe
+SET MM=%DATE:~4,2%
+SET YYYY=%DATE:~10,4%
+SET DD=%DATE:~7,2%
+SET H=%TIME:~0,2%
+SET M=%time:~3,2%
+SET S=%time:~6,2%
+
+:VBSDynamicBuild
+SET TempVBSFile=%tmp%\~tmpMnthTemp.vbs
+IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%"
+ECHO WScript.Echo(MonthName(%MM%,True))>>"%TempVBSFile%"
+FOR /F %%A IN ('CSCRIPT //nologo "%TempVBSFile%"') DO SET Mmm=%%~A
+
+:VLCStreamURL
+"%VLC%" "rtsp://root:pass@10.0.255.1/axis-media/media.amp?videocodec=h264&resolution=640x480" vlc://quit --run-time=36000 --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst="VLC-%H%-%M%-%S% %Mmm% %DD% %YYYY%.mp4",no-overwrite} --sout-keep
+GOTO EOF
