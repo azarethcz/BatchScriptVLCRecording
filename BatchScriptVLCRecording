@@ -14,5 +14,7 @@ ECHO WScript.Echo(MonthName(%MM%,True))>>"%TempVBSFile%"
 FOR /F %%A IN ('CSCRIPT //nologo "%TempVBSFile%"') DO SET Mmm=%%~A
 
 :VLCStreamURL
-"%VLC%" "rtsp://root:pass@10.0.255.1/axis-media/media.amp?videocodec=h264&resolution=640x480" vlc://quit --run-time=36000 --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst="VLC-%H%-%M%-%S% %Mmm% %DD% %YYYY%.mp4",no-overwrite} --sout-keep
+"%VLC%" "rtsp://root:pass@10.0.255.1/axis-media/media.amp?videocodec=h264&resolution=640x480" vlc://quit --run-time=36000 --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst="Balkon1-%H%-%M%-%S% %Mmm% %DD% %YYYY%.mp4",no-overwrite} --sout-keep
+"%VLC%" "rtsp://root:pass@10.0.255.1/axis-media/media.amp?videocodec=h264&resolution=640x480" vlc://quit --run-time=36000 --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst="Balkon2-%H%-%M%-%S% %Mmm% %DD% %YYYY%.mp4",no-overwrite} --sout-keep
+"%VLC%" "rtsp://root:pass@10.0.255.1/axis-media/media.amp?videocodec=h264&resolution=640x480" vlc://quit --run-time=36000 --sout=#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100}:file{dst="Balkon3-%H%-%M%-%S% %Mmm% %DD% %YYYY%.mp4",no-overwrite} --sout-keep
 GOTO EOF
